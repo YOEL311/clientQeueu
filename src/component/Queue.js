@@ -72,7 +72,8 @@ const Queue = () => {
             ></TextField>
             <Button
               onClick={() => {
-                nameNewCustomer.lengtj > 0 &&
+                console.log("object");
+                nameNewCustomer.length > 0 &&
                   dispatch(addNewCustomer(nameNewCustomer));
                 setNameNewCustomer("");
               }}
@@ -88,7 +89,9 @@ const Queue = () => {
           />
 
           <Grid container justify="center">
-            <Grid md={8}>{queue && <TableQueue rows={queue} />}</Grid>
+            <Grid item md={8}>
+              {queue && <TableQueue rows={queue} />}
+            </Grid>
           </Grid>
         </Card>
       </Container>

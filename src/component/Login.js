@@ -38,6 +38,7 @@ const Login = () => {
         <Card style={{ marginTop: 50, padding: 40 }}>
           <Grid container justify="center">
             <Grid
+              item
               md={5}
               spacing={30}
               direction="column"
