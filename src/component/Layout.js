@@ -173,7 +173,7 @@ export default function MiniDrawer(props) {
             </ListItemIcon>
             <ListItemText primary={"Login"} />
           </ListItem>
-          <ListItem button component={NavLink} to="qeueu">
+          <ListItem button component={NavLink} to="queue">
             <ListItemIcon>
               <QueueIcon />
             </ListItemIcon>

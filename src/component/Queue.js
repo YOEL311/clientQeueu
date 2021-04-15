@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-const Qeueu = () => {
+const Queue = () => {
   //   const listFavorites = useSelector(
   //     (state) => state.preferUser.listFavorites
   //   );
@@ -29,4 +29,4 @@ const Qeueu = () => {
   );
 };
 
-export default Qeueu;
+export default Queue;
