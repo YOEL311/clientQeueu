@@ -21,7 +21,7 @@ const Queue = () => {
   const dispatch = useDispatch();
 
   const queue = useSelector((state) => state.queue);
-  const [nameNewCustomer, setNameNewCustomer] = useState(null);
+  const [nameNewCustomer, setNameNewCustomer] = useState("");
 
   useEffect(() => {
     dispatch(getListQueue());
@@ -66,12 +66,14 @@ const Queue = () => {
               onChange={(val) => {
                 setNameNewCustomer(val.target.value);
               }}
+              value={nameNewCustomer}
               placeholder="any name"
               variant="standard"
             ></TextField>
             <Button
               onClick={() => {
-                nameNewCustomer && dispatch(addNewCustomer(nameNewCustomer));
+                nameNewCustomer.lengtj > 0 &&
+                  dispatch(addNewCustomer(nameNewCustomer));
                 setNameNewCustomer("");
               }}
               variant="contained"
