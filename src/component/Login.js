@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Container,
@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { login as loginAction } from "../store/actions";
 import { useDispatch } from "react-redux";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   TextField: {
@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Login = () => {
   const dispatch = useDispatch();
+
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
   const style = useStyles();
   return (
@@ -35,22 +38,29 @@ const Login = () => {
             >
               <TextField
                 className={style.TextField}
-                onChange={(val) => {}}
+                // onChange={(val) => {}}
                 placeholder="userName"
                 variant="filled"
+                value={userName}
+                onChange={(val) => {
+                  setUserName(val.target.value);
+                }}
               />
               <TextField
                 className={style.TextField}
-                onChange={(val) => {}}
                 placeholder="password"
                 variant="filled"
+                value={password}
+                onChange={(val) => {
+                  setPassword(val.target.value);
+                }}
               />
               <Button
                 className={style.TextField}
                 color="primary"
                 variant="outlined"
                 onClick={() => {
-                  dispatch(loginAction());
+                  dispatch(loginAction(userName, password));
                 }}
               >
                 <Typography>LOGIN</Typography>

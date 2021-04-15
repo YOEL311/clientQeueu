@@ -48,12 +48,12 @@ const addNewCustomer = (name) => {
   };
 };
 
-const login = (email, password) => {
+const login = (userName, password) => {
   return async (dispatch) => {
     var data = JSON.stringify({
       user: {
-        email: "admin",
-        password: "admin",
+        email: userName,
+        password,
       },
     });
     const config = {
