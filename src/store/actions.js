@@ -40,7 +40,7 @@ const addNewCustomer = (name) => {
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        dispatch(getListQueueSuccess(response.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -100,7 +100,6 @@ const getListQueue = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         dispatch(getListQueueSuccess(response.data));
       })
       .catch(function (error) {
@@ -126,7 +125,7 @@ const nextQueue = () => {
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        dispatch(getListQueueSuccess(response.data));
       })
       .catch(function (error) {
         console.log(error);
