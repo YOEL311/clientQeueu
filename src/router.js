@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Login from "./component/Login";
@@ -10,8 +11,8 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Layout>
-        <Route exact={true} path="/queue" component={Queue} />
         <Route exact={true} path="/login" component={Login} />
+        <Route exact={true} path="/queue" component={Queue} />
       </Layout>
       <ToastContainer />
     </BrowserRouter>

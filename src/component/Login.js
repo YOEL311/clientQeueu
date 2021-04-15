@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Container,
@@ -10,6 +10,8 @@ import {
 import { login as loginAction } from "../store/actions";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   TextField: {
@@ -18,6 +20,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    user && history.push("/queue");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +39,6 @@ const Login = () => {
           <Grid container justify="center">
             <Grid
               md={5}
-              // alignContent="center"
               spacing={30}
               direction="column"
               container
@@ -38,7 +46,6 @@ const Login = () => {
             >
               <TextField
                 className={style.TextField}
-                // onChange={(val) => {}}
                 placeholder="userName"
                 variant="filled"
                 value={userName}
@@ -61,6 +68,8 @@ const Login = () => {
                 variant="outlined"
                 onClick={() => {
                   dispatch(loginAction(userName, password));
+                  setUserName("");
+                  setPassword("");
                 }}
               >
                 <Typography>LOGIN</Typography>

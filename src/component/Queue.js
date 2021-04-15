@@ -72,6 +72,7 @@ const Queue = () => {
             <Button
               onClick={() => {
                 nameNewCustomer && dispatch(addNewCustomer(nameNewCustomer));
+                setNameNewCustomer("");
               }}
               variant="contained"
             >
