@@ -7,7 +7,6 @@ const init = {
 };
 
 function reducer(state = init, action) {
-  console.log("🚀 ~ file: reducer.js ~ line 10 ~ reducer ~ action", action);
   switch (action.type) {
     case TOGGLE_THEME:
       return { ...state, them: state.them === "dark" ? "light" : "dark" };

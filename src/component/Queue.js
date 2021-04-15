@@ -4,7 +4,6 @@ import {
   Grid,
   Container,
   Card,
-  CardContent,
   Typography,
   Button,
   Divider,
@@ -18,27 +17,15 @@ const Queue = () => {
   const dispatch = useDispatch();
 
   const queue = useSelector((state) => state.queue);
-  console.log("🚀 ~ file: Queue.js ~ line 21 ~ Queue ~ queue", queue);
-  const [inService, setInService] = useState(null);
   const [nameNewCustomer, setNameNewCustomer] = useState(null);
-  console.log(
-    "🚀 ~ file: Queue.js ~ line 23 ~ Queue ~ nameNewCustomer",
-    nameNewCustomer
-  );
-  // const [awaiting, setAwaiting] = useState(null);
 
   useEffect(() => {
     dispatch(getListQueue());
   }, []);
 
-  // useEffect(() => {
-  //   if (queue) {
-  //     const tmpInService = queue.filter((el) => el.status === 1);
-  //     setInService(tmpInService);
-  //     const tmpAwaiting = queue.filter((el) => el.status === 0);
-  //     setAwaiting(tmpAwaiting);
-  //   }
-  // }, [queue]);
+  useEffect(() => {
+    queue && queue.sort((a, b) => a.id - b.id);
+  }, [queue]);
 
   return (
     <Grid>

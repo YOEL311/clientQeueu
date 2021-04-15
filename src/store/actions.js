@@ -11,7 +11,6 @@ const toggleTheme = () => {
 };
 
 const loginSuccess = (data) => {
-  console.log("🚀 ~ file: actions.js ~ line 13 ~ loginSuccess ~ data", data);
   return {
     type: LOGIN_SUCCESS,
     payload: data,
@@ -20,24 +19,11 @@ const loginSuccess = (data) => {
 
 const addNewCustomer = (name) => {
   return async (dispatch, getState) => {
-    console.log(
-      "🚀 ~ file: actions.js ~ line 21 ~ addNewCustomer ~ name",
-      name
-    );
     const token = getState().token;
-    console.log("🚀 ~ file: actions.js ~ line 27 ~ return ~ token", token);
-
     if (!token) {
       // display error
       return;
     }
-
-    // const data = JSON.stringify({
-    //   queue: {
-    //     fullName: name,
-    //   },
-    // });
-    // console.log("🚀 ~ file: actions.js ~ line 40 ~ return ~ data", data);
 
     const config = {
       method: "POST",
@@ -46,16 +32,12 @@ const addNewCustomer = (name) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      // data: data,
-
       data: {
         queue: {
           fullName: name,
         },
       },
     };
-    console.log("🚀 ~ file: actions.js ~ line 51 ~ return ~ config", config);
-
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
@@ -68,14 +50,12 @@ const addNewCustomer = (name) => {
 
 const login = (email, password) => {
   return async (dispatch) => {
-    // const key = getstate().preferUser.itemSelected.Key;
     var data = JSON.stringify({
       user: {
         email: "admin",
         password: "admin",
       },
     });
-
     const config = {
       method: "POST",
       url: "/api/users/login",
@@ -84,10 +64,8 @@ const login = (email, password) => {
       },
       data: data,
     };
-
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         dispatch(loginSuccess(response.data));
       })
       .catch(function (error) {
@@ -97,6 +75,7 @@ const login = (email, password) => {
 };
 
 const getListQueueSuccess = (data) => {
+  data.sort((a, b) => a.id - b.id);
   return {
     type: GET_LIST_QUEUE_SUCCESS,
     payload: data,
@@ -105,13 +84,10 @@ const getListQueueSuccess = (data) => {
 const getListQueue = () => {
   return async (dispatch, getState) => {
     const token = getState().token;
-    console.log("🚀 ~ file: actions.js ~ line 58 ~ return ~ token", token);
-    // TODO: add get current Queue
     if (!token) {
       // display error
       return;
     }
-    // var data = "";
 
     var config = {
       method: "get",
@@ -120,7 +96,6 @@ const getListQueue = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      // data: data,
     };
 
     axios(config)
@@ -137,18 +112,10 @@ const getListQueue = () => {
 const nextQueue = () => {
   return async (dispatch, getState) => {
     const token = getState().token;
-    console.log("🚀 ~ file: actions.js ~ line 134 ~ return ~ token", token);
-    // TODO: add get current Queue
     if (!token) {
       // display error
       return;
     }
-    // const data = JSON.stringify({
-    //   queue: {
-    //     currentQueue: 1,
-    //   },
-    // });
-
     var config = {
       method: "POST",
       url: "/api/queue/nextQueue",
@@ -156,16 +123,7 @@ const nextQueue = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      // data: data,
-
-      // data: {
-      //   queue: {
-      //     currentQueue: 1,
-      //   },
-      // },
     };
-    console.log("🚀 ~ file: actions.js ~ line 154 ~ return ~ config", config);
-
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
