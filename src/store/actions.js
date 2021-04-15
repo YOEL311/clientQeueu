@@ -108,6 +108,28 @@ const getListQueue = () => {
   };
 };
 
+const resetTable = () => {
+  return async (dispatch) => {
+    var config = {
+      method: "get",
+      url: "/api/queue/resetTable",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMyIsInBhc3N3b3JkIjoiMTIzIiwiaWF0IjoxNjE4MzEwMzY4fQ.j8GaRTJUwkF1oWsKI8zoOq5Nx9QKf3uLFDUkOMLGZUU",
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        dispatch(getListQueueSuccess(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+
 const nextQueue = () => {
   return async (dispatch, getState) => {
     const token = getState().token;
@@ -133,4 +155,11 @@ const nextQueue = () => {
   };
 };
 
-export { toggleTheme, login, nextQueue, getListQueue, addNewCustomer };
+export {
+  toggleTheme,
+  login,
+  nextQueue,
+  getListQueue,
+  addNewCustomer,
+  resetTable,
+};

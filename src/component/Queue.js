@@ -9,8 +9,12 @@ import {
   Divider,
   TextField,
 } from "@material-ui/core";
-import { getListQueue, addNewCustomer, nextQueue } from "../store/actions";
-
+import {
+  getListQueue,
+  addNewCustomer,
+  nextQueue,
+  resetTable,
+} from "../store/actions";
 import TableQueue from "./TableQueue";
 
 const Queue = () => {
@@ -31,7 +35,26 @@ const Queue = () => {
     <Grid>
       <Container>
         <Card style={{ marginTop: 50, padding: 40 }}>
-          <Grid direction="row" container justify="space-evenly"></Grid>
+          <Grid direction="row" container justify="space-between">
+            <Button
+              onClick={() => {
+                dispatch(nextQueue());
+              }}
+              variant="contained"
+            >
+              <Typography align="center">next</Typography>
+            </Button>
+
+            <Button
+              onClick={() => {
+                dispatch(resetTable());
+              }}
+              variant="contained"
+            >
+              <Typography color="error">RESET TEBLE</Typography>
+            </Button>
+          </Grid>
+
           <Grid
             justify="space-evenly"
             alignItems="flex-end"
@@ -44,7 +67,7 @@ const Queue = () => {
                 setNameNewCustomer(val.target.value);
               }}
               placeholder="any name"
-              variant="filled"
+              variant="standard"
             ></TextField>
             <Button
               onClick={() => {
@@ -55,14 +78,6 @@ const Queue = () => {
               <Typography align="center">add in queue</Typography>
             </Button>
           </Grid>
-          <Button
-            onClick={() => {
-              dispatch(nextQueue());
-            }}
-            variant="contained"
-          >
-            <Typography align="center">next</Typography>
-          </Button>
 
           <Divider
             style={{ marginTop: 25, marginBottom: 25 }}

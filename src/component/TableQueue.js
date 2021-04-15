@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import moment from "moment";
 
 const useStyles = makeStyles({
   table: {
@@ -45,7 +46,9 @@ export default function BasicTable({ rows }) {
             >
               <TableCell align="right">{row.id}</TableCell>
               <TableCell align="right">{row.full_name}</TableCell>
-              <TableCell align="right">{row.timestamp}</TableCell>
+              <TableCell align="right">
+                {moment(row.timestamp).fromNow()}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
