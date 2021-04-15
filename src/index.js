@@ -14,22 +14,23 @@ import { PersistGate } from "redux-persist/integration/react";
 const persistConfig = {
   key: "queue",
   storage,
-  blacklist: ["queue",],
+  blacklist: ["queue"],
 };
 
-const logger = (store) => (next) => (action) => {
-  console.group(action.type);
-  console.info("dispatching", action);
-  let result = next(action);
-  console.log("next state", store.getState());
-  console.groupEnd();
-  return result;
-};
+// const logger = (store) => (next) => (action) => {
+//   console.group(action.type);
+//   console.info("dispatching", action);
+//   let result = next(action);
+//   console.log("next state", store.getState());
+//   console.groupEnd();
+//   return result;
+// };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = createStore(
   persistedReducer,
-  applyMiddleware(ReduxThunk, logger)
+  applyMiddleware(ReduxThunk)
+  // applyMiddleware(ReduxThunk, logger)
 );
 let persistor = persistStore(store);
 
