@@ -28,12 +28,15 @@ const Login = () => {
         <Card style={{ marginTop: 50, padding: 40 }}>
           <Grid direction="row" container justify="space-evenly">
             <Button
+              color="primary"
+              variant="outlined"
               onClick={() => {
                 dispatch(loginAction());
               }}
             >
               <Typography>hgjkhg</Typography>
             </Button>
+            <Typography>hgjkhg</Typography>
           </Grid>
         </Card>
       </Container>

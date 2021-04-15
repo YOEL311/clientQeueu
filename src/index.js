@@ -14,7 +14,7 @@ import { PersistGate } from "redux-persist/integration/react";
 const persistConfig = {
   key: "queue",
   storage,
-  blacklist: ["data"],
+  blacklist: ["queue",],
 };
 
 const logger = (store) => (next) => (action) => {
