@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TOGGLE_THEME, LOGIN_SUCCESS, GET_LIST_QUEUE_SUCCESS } from "./types";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "https://queue-manager-yoel.herokuapp.com";
 
@@ -20,7 +21,7 @@ const addNewCustomer = (name) => {
   return async (dispatch, getState) => {
     const token = getState().token;
     if (!token) {
-      // display error
+      toast.error("Must have token");
       return;
     }
 
@@ -66,6 +67,7 @@ const login = (userName, password) => {
     axios(config)
       .then(function (response) {
         dispatch(loginSuccess(response.data));
+        toast.success("Login success");
       })
       .catch(function (error) {
         console.log(error);
@@ -84,7 +86,7 @@ const getListQueue = () => {
   return async (dispatch, getState) => {
     const token = getState().token;
     if (!token) {
-      // display error
+      toast.error("Must have token");
       return;
     }
 
@@ -111,7 +113,7 @@ const resetTable = () => {
   return async (dispatch, getState) => {
     const token = getState().token;
     if (!token) {
-      // display error
+      toast.error("Must have token");
       return;
     }
     var config = {
@@ -137,7 +139,7 @@ const nextQueue = () => {
   return async (dispatch, getState) => {
     const token = getState().token;
     if (!token) {
-      // display error
+      toast.error("Must have token");
       return;
     }
     var config = {

@@ -16,6 +16,7 @@ import {
   resetTable,
 } from "../store/actions";
 import TableQueue from "./TableQueue";
+import { toast } from "react-toastify";
 
 const Queue = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const Queue = () => {
               }}
               variant="contained"
             >
-              <Typography color="error">RESET TEBLE</Typography>
+              <Typography color="error">RESET TABLE</Typography>
             </Button>
           </Grid>
 
@@ -72,10 +73,13 @@ const Queue = () => {
             ></TextField>
             <Button
               onClick={() => {
-                console.log("object");
-                nameNewCustomer.length > 0 &&
+                if (nameNewCustomer.length > 0) {
                   dispatch(addNewCustomer(nameNewCustomer));
-                setNameNewCustomer("");
+                  setNameNewCustomer("");
+                }else{
+                  toast.error("enter name")
+                }
+
               }}
               variant="contained"
             >
@@ -89,9 +93,7 @@ const Queue = () => {
           />
 
           <Grid container justify="center">
-            <Grid item md={8}>
-              {queue && <TableQueue rows={queue} />}
-            </Grid>
+            <Grid>{queue && <TableQueue rows={queue} />}</Grid>
           </Grid>
         </Card>
       </Container>

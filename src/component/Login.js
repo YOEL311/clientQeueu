@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   TextField: {
@@ -40,7 +41,6 @@ const Login = () => {
             <Grid
               item
               md={5}
-              spacing={30}
               direction="column"
               container
               justify="space-evenly"
@@ -68,9 +68,13 @@ const Login = () => {
                 color="primary"
                 variant="outlined"
                 onClick={() => {
-                  dispatch(loginAction(userName, password));
-                  setUserName("");
-                  setPassword("");
+                  if (userName.length > 0 && password.length > 0) {
+                    dispatch(loginAction(userName, password));
+                    setUserName("");
+                    setPassword("");
+                  } else {
+                    toast.error("enter name and password");
+                  }
                 }}
               >
                 <Typography>LOGIN</Typography>
