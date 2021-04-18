@@ -31,7 +31,6 @@ const Queue = () => {
   useEffect(() => {
     queue && queue.sort((a, b) => a.id - b.id);
   }, [queue]);
-
   return (
     <Grid>
       <Container>
@@ -43,7 +42,7 @@ const Queue = () => {
               }}
               variant="contained"
             >
-              <Typography align="center">next</Typography>
+              <Typography align="center">next queue</Typography>
             </Button>
 
             <Button
@@ -57,12 +56,11 @@ const Queue = () => {
           </Grid>
 
           <Grid
-            justify="space-evenly"
+            justify="flex-start"
             alignItems="flex-end"
             container
             direction="row"
           >
-            <Typography align="justify">Customer name</Typography>
             <TextField
               onChange={(val) => {
                 setNameNewCustomer(val.target.value);
@@ -70,16 +68,16 @@ const Queue = () => {
               value={nameNewCustomer}
               placeholder="any name"
               variant="standard"
-            ></TextField>
+              style={{ paddingRight: 20 }}
+            />
             <Button
               onClick={() => {
                 if (nameNewCustomer.length > 0) {
                   dispatch(addNewCustomer(nameNewCustomer));
                   setNameNewCustomer("");
-                }else{
-                  toast.error("enter name")
+                } else {
+                  toast.error("enter name");
                 }
-
               }}
               variant="contained"
             >
